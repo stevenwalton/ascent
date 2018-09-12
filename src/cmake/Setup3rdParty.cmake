@@ -120,4 +120,9 @@ if (ADIOS_DIR)
   include(cmake/thirdparty/SetupADIOS.cmake)
 endif()
 
+# ADIOS2
+if (ADIOS2_DIR)
+  include(cmake/thirdparty/SetupADIOS2.cmake)
+endif()
+
 

@@ -63,6 +63,7 @@ set(ASCENT_VTKH_ENABLED ${VTKM_FOUND})
 
 set(ASCENT_HDF5_ENABLED ${HDF5_FOUND})
 set(ASCENT_ADIOS_ENABLED ${ADIOS_FOUND})
+set(ASCENT_ADIOS2_ENABLED ${ADIOS2_FOUND})
 set(ASCENT_MFEM_ENABLED ${MFEM_FOUND})
 
 if(ASCENT_VTKM_ENABLED)
@@ -230,6 +231,13 @@ if(MPI_FOUND)
        list(APPEND ascent_headers runtimes/flow_filters/ascent_runtime_adios_filters.hpp)
        list(APPEND ascent_sources runtimes/flow_filters/ascent_runtime_adios_filters.cpp)
        list(APPEND ascent_mpi_thirdparty_libs adios)
+    endif()
+
+    # adios2
+    if (ADIOS2_FOUND)
+       list(APPEND ascent_headers runtimes/flow_filters/ascent_runtime_adios2_filters.hpp)
+       list(APPEND ascent_sources runtimes/flow_filters/ascent_runtime_adios2_filters.cpp)
+       list(APPEND ascent_mpi_thirdparty_libs adios2)
     endif()
 
     list(APPEND ascent_mpi_thirdparty_libs ${ascent_thirdparty_libs})

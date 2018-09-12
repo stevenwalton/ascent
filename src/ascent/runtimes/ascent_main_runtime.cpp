@@ -120,7 +120,6 @@ AscentRuntime::~AscentRuntime()
 //
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-
 //-----------------------------------------------------------------------------
 void
 AscentRuntime::Initialize(const conduit::Node &options)
@@ -488,7 +487,11 @@ AscentRuntime::ConvertExtractToFlow(const conduit::Node &extract,
   std::string extract_type = extract["type"].as_string();
  
   // current special case filter setup
-  if(extract_type == "python")
+  if (extract_type == "adios2")
+  {
+      filter_name = "adios2";
+  }
+  else if(extract_type == "python")
   {
     filter_name = "python_script";
     

@@ -69,8 +69,13 @@
     #include <ascent_runtime_hola_filters.hpp>
 #if defined(ASCENT_ADIOS_ENABLED)
     #include <ascent_runtime_adios_filters.hpp>
-#endif
-#endif
+#endif // ADIOS
+
+#if defined(ASCENT_ADIOS2_ENABLED)
+    #include <ascent_runtime_adios2_filters.hpp>
+#endif // ADIOS2
+
+#endif // MPI
 
 
 
@@ -135,16 +140,19 @@ register_builtin()
     AscentRuntime::register_filter_type<CreatePlot>();
     AscentRuntime::register_filter_type<CreateScene>();
     AscentRuntime::register_filter_type<ExecScene>();
-#endif
+#endif // VTKM
 
 #if defined(ASCENT_MPI_ENABLED)
     AscentRuntime::register_filter_type<HolaMPIExtract>("extracts","hola_mpi");
 
 #if defined(ASCENT_ADIOS_ENABLED)
     AscentRuntime::register_filter_type<ADIOS>("extracts","adios");
-#endif
+#endif // ADIOS
+#if defined(ASCENT_ADIOS2_ENABLED)
+    AscentRuntime::register_filter_type<ASCENT_ADIOS2>("extracts","adios2");
+#endif // ADIOS2
 
-#endif
+#endif // MPI
 
 }
 
